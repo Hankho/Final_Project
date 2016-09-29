@@ -1,0 +1,12 @@
+<h1>主題</h1>
+<%@topics.each do |topic|%>
+<ul>
+	<li>
+		<%=topic.name%>
+		<%=link_to"主題內容", topic_path(topic)%>
+		<%=link_to"編輯", edit_topic_path(topic)%>
+		<%=link_to"刪除", topic_path(topic), :method=>:delete%>
+	</li>
+</ul>
+<%end%>
+<%= link_to "Create New", new_topic_path%>
