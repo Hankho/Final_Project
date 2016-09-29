@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-
+	before_action :set_topic, :only => [:show, :edit, :update, :destroy]
 	def index
 		@topics = Topic.all
 	end
@@ -12,18 +12,16 @@ class TopicsController < ApplicationController
 		redirect_to topics_path
 	end
 	def show
-		@topic = Topic.find(params[:id])
+		
 	end
 	def edit
-		@topic = Topic.find(params[:id])
+		
 	end
 	def update
-		@topic = Topic.find(params[:id])
 		@topic.update(params_set)
 		redirect_to topics_path
 	end
 	def destroy
-		@topic = Topic.find(params[:id])
 		@topic.destroy
 		redirect_to topics_path
 	end
@@ -31,5 +29,8 @@ class TopicsController < ApplicationController
 	private
 	def params_set
 		params.require(:topic).permit(:name, :content)
+	end
+	def set_topic
+		@topic = Topic.find(params[:id])
 	end
 end
